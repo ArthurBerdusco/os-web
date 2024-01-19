@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const OpenServiceForm = () => {
+const OpenCorrective = () => {
 
     const [location, setLocation] = useState("");
     const [tower, setTower] = useState("");
@@ -8,9 +8,12 @@ const OpenServiceForm = () => {
     const [area, setArea] = useState("");
     const [description, setDescription] = useState("");
     const [tech_id, setTechId] = useState("");
-
+    
     const handleOpenOrder = async (e) => {
         e.preventDefault();
+
+        const techIdAsNumber = parseInt(tech_id, 10);
+
         try {
             const response = await fetch('http://192.168.15.21:8080/corrective', {
                 method: 'POST',
@@ -23,7 +26,7 @@ const OpenServiceForm = () => {
                     floor,
                     area,
                     description,
-                    tech_id
+                    tech_id: techIdAsNumber
                 }),
             });
 
@@ -100,4 +103,4 @@ const OpenServiceForm = () => {
     );
 };
 
-export default OpenServiceForm;
+export default OpenCorrective;
